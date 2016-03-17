@@ -38,17 +38,12 @@ public class BallDemo
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
         
-        BouncingBall a = new BouncingBall(num.nextInt(200), num.nextInt(150), num.nextInt(50), Color.BLUE, ground, myCanvas);
-        bolas.add(a);
-        for(int i = 1; i < numBolas; i++){
+
+        for(int i = 0; i < numBolas; i++){
             Color color = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255));
-            a = new BouncingBall(num.nextInt(200), num.nextInt(150), num.nextInt(50), color, ground, myCanvas);
-            bolas.add(a);
-        }
-        for(int i = 0; i < bolas.size();i++){
+            bolas.add(new BouncingBall(num.nextInt(200), num.nextInt(150), num.nextInt(50), color, ground, myCanvas));
             bolas.get(i).draw();
         }
-
         // make them bounce
         boolean finished =  false;
         while(!finished) {
