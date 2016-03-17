@@ -53,12 +53,8 @@ public class BallDemo
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(50);           // small delay
-            for(int i = 0; i < bolas.size();i++){
-                bolas.get(i).move();
-            }
-
-            // stop once ball has travelled a certain distance on x axis
             for(int i = 0; i < bolas.size() && !finished;i++){
+                bolas.get(i).move();
                 if(bolas.get(i).getXPosition() >= 550) {
                     finished = true;
                 }
