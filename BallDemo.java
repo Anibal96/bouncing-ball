@@ -31,16 +31,16 @@ public class BallDemo
     public void bounce(int numBolas)
     {
         int ground = 400;   // position of the ground line
-
+        Random num = new Random();
         myCanvas.setVisible(true);
 
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
 
-        BouncingBall a = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
+        BouncingBall a = new BouncingBall(50, 50, num.nextInt(50), Color.BLUE, ground, myCanvas);
         bolas.add(a);
         for(int i = 1; i < numBolas; i++){
-            a = new BouncingBall(50 - (i*10), 50, 16, Color.BLUE, ground, myCanvas);
+            a = new BouncingBall(50 - (i*10), 50, num.nextInt(50), Color.BLUE, ground, myCanvas);
             bolas.add(a);
         }
         for(int i = 0; i < bolas.size();i++){
