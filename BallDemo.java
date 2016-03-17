@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class BallDemo   
 {
     private Canvas myCanvas;
-    
+    //Colecion de bolas.
     private ArrayList<BouncingBall> bolas;
 
     /**
@@ -21,6 +22,7 @@ public class BallDemo
     public BallDemo()
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
+        bolas = new ArrayList<BouncingBall>();
     }
 
     /**
@@ -34,23 +36,30 @@ public class BallDemo
 
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
-        
-        BouncingBall a = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
 
-        for(int i = 0; i < numBolas; i++){
-            a = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
-            a.draw();
+        BouncingBall a = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
+        bolas.add(a);
+        for(int i = 1; i < numBolas; i++){
+            a = new BouncingBall(50 - (i*10), 50, 16, Color.BLUE, ground, myCanvas);
+            bolas.add(a);
         }
-        a.draw();
+        for(int i = 0; i < bolas.size();i++){
+            bolas.get(i).draw();
+        }
 
         // make them bounce
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(50);           // small delay
-            a.move();
+            for(int i = 0; i < bolas.size();i++){
+                bolas.get(i).move();
+            }
+
             // stop once ball has travelled a certain distance on x axis
-            if(a.getXPosition() >= 550) {
-                finished = true;
+            for(int i = 0; i < bolas.size() && !finished;i++){
+                if(bolas.get(i).getXPosition() >= 550) {
+                    finished = true;
+                }
             }
         }
     }
